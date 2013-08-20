@@ -14,6 +14,42 @@ run = True
 def draw_dot(coords, red, green, blue):
     screen.set_at(coords, (red, green, blue))
 
+def find_new():
+    dots_new = []
+    for dot in dots: 
+        if (dot[0] + 10, dot[1]) not in dots:
+            n = calculate_neighbours(dot[0], dot[1])
+            if n == 3:
+                dots_new.append(dot[0] + 10, dot[1])
+        if (dot[0] - 10, dot[1]) not in dots:
+            n = calculate_neighbours(dot[0], dot[1])
+            if n == 3:
+                dots_new.append(dot[0] + 10, dot[1])
+        if (dot[0], dot[1] + 10) not in dots:
+            n = calculate_neighbours(dot[0], dot[1])
+            if n == 3:
+                dots_new.append(dot[0] + 10, dot[1])
+        if (dot[0], dot[1] - 10) not in dots:
+            n = calculate_neighbours(dot[0], dot[1])
+            if n == 3:
+                dots_new.append(dot[0] + 10, dot[1])
+        if (dot[0] + 10, dot[1] + 10) not in dots:
+            n = calculate_neighbours(dot[0], dot[1])
+            if n == 3:
+                dots_new.append(dot[0] + 10, dot[1])
+        if (dot[0] - 10, dot[1] - 10) not in dots:
+            n = calculate_neighbours(dot[0], dot[1])
+            if n == 3:
+                dots_new.append(dot[0] + 10, dot[1])
+        if (dot[0] - 10, dot[1] + 10) not in dots:
+            n = calculate_neighbours(dot[0], dot[1])
+            if n == 3:
+                dots_new.append(dot[0] + 10, dot[1])
+        if (dot[0] + 10, dot[1] - 10) not in dots:
+            n = calculate_neighbours(dot[0], dot[1])
+            if n == 3:
+                dots_new.append(dot[0] + 10, dot[1])
+    return dots_new
 
 def calculate_neighbours(dot):
     neighbours = 0
@@ -33,11 +69,12 @@ def calculate_neighbours(dot):
         neighbours += 1
     if (dot[0]+10, dot[1]-10) in dots: 
         neighbours += 1
-   
     print dot, neighbours
-    if neighbours in [0, 1] or neighbours > 3:
-        draw_dot(dot, 0, 0, 0)
-        dots.remove(dot)
+    return neighbours
+
+    #if neighbours in [0, 1] or neighbours > 3:
+    #    draw_dot(dot, 0, 0, 0)
+    #    dots.remove(dot)
     
 
 while run:
@@ -55,4 +92,7 @@ while run:
     pygame.display.flip()
     clock.tick(1)
     for dot in dots:
+        print dot
+        dots_new = find_new()
+        print dots_new
         calculate_neighbours(dot)
