@@ -15,40 +15,48 @@ def draw_dot(coords, red, green, blue):
     screen.set_at(coords, (red, green, blue))
 
 def find_new():
-    dots_new = []
+    dots_new = set()
     for dot in dots: 
-        if (dot[0] + 10, dot[1]) not in dots:
-            n = calculate_neighbours(dot[0], dot[1])
+        k = (dot[0] + 10, dot[1])
+        if k not in dots:
+            n = calculate_neighbours(k)
             if n == 3:
-                dots_new.append(dot[0] + 10, dot[1])
-        if (dot[0] - 10, dot[1]) not in dots:
-            n = calculate_neighbours(dot[0], dot[1])
+                dots_new.add(k)
+        k = (dot[0] - 10, dot[1])
+        if k not in dots:
+            n = calculate_neighbours(k)
             if n == 3:
-                dots_new.append(dot[0] + 10, dot[1])
-        if (dot[0], dot[1] + 10) not in dots:
-            n = calculate_neighbours(dot[0], dot[1])
+                dots_new.add(k)
+        k = (dot[0], dot[1] + 10)
+        if k not in dots:
+            n = calculate_neighbours(k)
             if n == 3:
-                dots_new.append(dot[0] + 10, dot[1])
-        if (dot[0], dot[1] - 10) not in dots:
-            n = calculate_neighbours(dot[0], dot[1])
+                dots_new.add(k)
+        k = (dot[0], dot[1] - 10)
+        if k not in dots:
+            n = calculate_neighbours(k)
             if n == 3:
-                dots_new.append(dot[0] + 10, dot[1])
-        if (dot[0] + 10, dot[1] + 10) not in dots:
-            n = calculate_neighbours(dot[0], dot[1])
+                dots_new.add(k)
+        k = (dot[0] + 10, dot[1] + 10)
+        if k not in dots:
+            n = calculate_neighbours(k)
             if n == 3:
-                dots_new.append(dot[0] + 10, dot[1])
-        if (dot[0] - 10, dot[1] - 10) not in dots:
-            n = calculate_neighbours(dot[0], dot[1])
+                dots_new.add(k)
+        k = (dot[0] - 10, dot[1] - 10)
+        if k not in dots:
+            n = calculate_neighbours(k)
             if n == 3:
-                dots_new.append(dot[0] + 10, dot[1])
-        if (dot[0] - 10, dot[1] + 10) not in dots:
-            n = calculate_neighbours(dot[0], dot[1])
+                dots_new.add(k)
+        k = (dot[0] - 10, dot[1] + 10)
+        if k not in dots:
+            n = calculate_neighbours(k)
             if n == 3:
-                dots_new.append(dot[0] + 10, dot[1])
-        if (dot[0] + 10, dot[1] - 10) not in dots:
-            n = calculate_neighbours(dot[0], dot[1])
+                dots_new.add(k)
+        k = (dot[0] + 10, dot[1] - 10)
+        if k not in dots:
+            n = calculate_neighbours(k)
             if n == 3:
-                dots_new.append(dot[0] + 10, dot[1])
+                dots_new.add(k)
     return dots_new
 
 def calculate_neighbours(dot):
@@ -69,7 +77,7 @@ def calculate_neighbours(dot):
         neighbours += 1
     if (dot[0]+10, dot[1]-10) in dots: 
         neighbours += 1
-    print dot, neighbours
+#    print dot, neighbours
     return neighbours
 
     #if neighbours in [0, 1] or neighbours > 3:
@@ -91,8 +99,12 @@ while run:
 
     pygame.display.flip()
     clock.tick(1)
+    dots_new = find_new()
     for dot in dots:
-        print dot
-        dots_new = find_new()
-        print dots_new
-        calculate_neighbours(dot)
+        if calculate_neighbours(dot) not in [2, 3]:
+            dots.remove(dot)
+            print "dot to remove", dot
+            draw_dot(dot, 0, 0, 0)
+    for dot in dots_new:
+        dots.append(dot)
+    #print dots
