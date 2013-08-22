@@ -6,16 +6,21 @@ height = 400
 
 i=0
 
-
 screen = pygame.display.set_mode((width, height))
 clock = pygame.time.Clock()
 dots = []
-dots.append((100, 100))
-dots.append((110, 100))
-dots.append((120, 100))
-dots.append((110, 90))
-dots.append((100, 90))
-dots.append((90, 90))
+dot_num = random.randint(5, 50)
+for x in range(dot_num):
+    x = random.randint(1, 10)
+    y = random.randint(1, 10)
+    dots.append((x*10, y*10))
+
+#dots.append((100, 100))
+#dots.append((110, 100))
+#dots.append((120, 100))
+#dots.append((110, 90))
+#dots.append((100, 90))
+#dots.append((90, 90))
 run = True
 def draw_dot(coords, red, green, blue):
     screen.set_at(coords, (red, green, blue))
