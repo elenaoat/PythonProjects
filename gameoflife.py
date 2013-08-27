@@ -4,8 +4,6 @@ import sys
 width = 640
 height = 400
 
-i = 0
-
 screen = pygame.display.set_mode((width, height))
 clock = pygame.time.Clock()
 dots = []
@@ -64,10 +62,6 @@ while run:
     red = random.randint(0, 255)
     green = random.randint(0, 255)
     blue = random.randint(0, 255)
-    i += 1
-#    if i == 4:
-#        pygame.quit()
-#        sys.exit()
     for dot in dots:
         draw_dot(dot, red, green, blue)
     pygame.display.flip()
