@@ -13,17 +13,18 @@ dots = []
 #    y = random.randint(1, 10)
 #    dots.append((x*10, y*10))
 
-dots.append((100, 100))
-dots.append((110, 100))
-dots.append((120, 100))
-dots.append((110, 90))
-dots.append((100, 90))
-dots.append((90, 90))
+dots.extend([(100, 100), (110, 100), (120, 100), (110, 90), (100, 90), (90, 90)])
+#dots.append((110, 100))
+#dots.append((120, 100))
+#dots.append((110, 90))
+#dots.append((100, 90))
+#dots.append((90, 90))
 run = True
 def draw_dot(coords, red, green, blue):
     screen.set_at(coords, (red, green, blue))
 
 def populate_list(k, dot):
+#    k.extend([
     k.append((dot[0] + 10, dot[1]))
     k.append((dot[0] - 10, dot[1]))
     k.append((dot[0], dot[1] + 10))
