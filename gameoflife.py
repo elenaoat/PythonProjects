@@ -69,7 +69,8 @@ while run:
 
     dots_new = find_new()
     dots_to_remove = [dot for dot in dots if calculate_neighbours(dot) not in [2, 3]]
-    [draw_dot(dot, 0, 0, 0) for dot in dots_to_remove]
+    for dot in dots_to_remove:
+        draw_dot(dot, 0, 0, 0)
     dots = [dot for dot in dots if dot not in dots_to_remove] 
     dots = dots + list(dots_new)
 
