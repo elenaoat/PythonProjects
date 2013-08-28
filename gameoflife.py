@@ -22,17 +22,19 @@ def draw_dot(coords, red, green, blue):
     """
     screen.set_at(coords, (red, green, blue))
 
-def populate_list(k, dot):
+def populate_list(dot):
     """
     Populate given list with all adjacent
         dots for a given dot.
 
     There are 8 adjacent dots for any dot.
     """
+    k = []
     k.extend([(dot[0] + 10, dot[1]), (dot[0] - 10, dot[1]), (dot[0], dot[1] + 10), 
               (dot[0], dot[1] - 10), (dot[0] + 10, dot[1] + 10), (dot[0] - 10, dot[1] - 10), 
               (dot[0] - 10, dot[1] + 10), (dot[0] + 10, dot[1] - 10)]);
-
+    return k
+    
 def find_new():
     """
     For existing dots at the moment,
@@ -44,8 +46,7 @@ def find_new():
     dots_new = set()
 
     for dot in dots: 
-        k = []
-        populate_list(k, dot)
+        k = populate_list(dot)
         for elem in k:
             if elem not in dots:
                 n = calculate_neighbours(elem)
@@ -59,8 +60,7 @@ def calculate_neighbours(dot):
     that are adjacent to a given dot.
     """
     neighbours = 0
-    k = []
-    populate_list(k, dot)
+    k = populate_list(dot)
    
     for elem in k:
         if elem in dots:
