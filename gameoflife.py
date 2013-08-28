@@ -16,18 +16,18 @@ dots = set()
 dots.update({(100, 100), (110, 100), (120, 100), (110, 90), (100, 90), (90, 90)})
 run = True
 def draw_dot(coords, red, green, blue):
-    """
-        Function that draws a dot with respective
-        coords and supplied color.
+    """ 
+    Draw a dot with respective
+    coords and supplied color.
     """
     screen.set_at(coords, (red, green, blue))
 
 def populate_list(k, dot):
     """
-        Function that populates given list with all adjacent
+    Populate given list with all adjacent
         dots for a given dot.
 
-        There are 8 adjacent dots for any dot.
+    There are 8 adjacent dots for any dot.
     """
     k.extend([(dot[0] + 10, dot[1]), (dot[0] - 10, dot[1]), (dot[0], dot[1] + 10), 
               (dot[0], dot[1] - 10), (dot[0] + 10, dot[1] + 10), (dot[0] - 10, dot[1] - 10), 
@@ -35,11 +35,11 @@ def populate_list(k, dot):
 
 def find_new():
     """
-        For existing dots at the moment,
-        calculate if any new dots will
-        become alive. If number of adjacent dots for
-        a currently dead dots equals 3, the dot
-        becomes alive.        
+    For existing dots at the moment,
+    calculate if any new dots will
+    become alive. If number of adjacent dots for
+    a currently dead dots equals 3, the dot
+    becomes alive.        
     """
     dots_new = set()
 
@@ -55,8 +55,8 @@ def find_new():
 
 def calculate_neighbours(dot):
     """
-        Calculate the number of alive dots
-        that are adjacent to a given dot.
+    Calculate the number of alive dots
+    that are adjacent to a given dot.
     """
     neighbours = 0
     k = []
