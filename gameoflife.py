@@ -16,14 +16,31 @@ dots = set()
 dots.update({(100, 100), (110, 100), (120, 100), (110, 90), (100, 90), (90, 90)})
 run = True
 def draw_dot(coords, red, green, blue):
+    """
+        Function that draws a dot with respective
+        coords and supplied color.
+    """
     screen.set_at(coords, (red, green, blue))
 
 def populate_list(k, dot):
+    """
+        Function that populates given list with all adjacent
+        dots for a given dot.
+
+        There are 8 adjacent dots for any dot.
+    """
     k.extend([(dot[0] + 10, dot[1]), (dot[0] - 10, dot[1]), (dot[0], dot[1] + 10), 
               (dot[0], dot[1] - 10), (dot[0] + 10, dot[1] + 10), (dot[0] - 10, dot[1] - 10), 
               (dot[0] - 10, dot[1] + 10), (dot[0] + 10, dot[1] - 10)]);
 
 def find_new():
+    """
+        For existing dots at the moment,
+        calculate if any new dots will
+        become alive. If number of adjacent dots for
+        a currently dead dots equals 3, the dot
+        becomes alive.        
+    """
     dots_new = set()
 
     for dot in dots: 
@@ -37,6 +54,10 @@ def find_new():
     return dots_new
 
 def calculate_neighbours(dot):
+    """
+        Calculate the number of alive dots
+        that are adjacent to a given dot.
+    """
     neighbours = 0
     k = []
     populate_list(k, dot)
@@ -57,9 +78,9 @@ while run:
 
     dots_new = find_new()
     dots_to_remove = {dot for dot in dots if calculate_neighbours(dot) not in [2, 3]}
-    [draw_dot(dot, 0, 0, 0) for dot in dots_to_remove]
+    for dot in dots_to_remove:
+        draw_dot(dot, 0, 0, 0)
     dots = dots - dots_to_remove
-    #{dot for dot in dots if dot not in dots_to_remove} 
     dots = dots | dots_new
 
     for event in pygame.event.get():
